@@ -1,7 +1,7 @@
 package com.gu.mediaservice.syntax
 
 import com.gu.mediaservice.lib.Processes
-import scalaz.stream.{Process, process1, Process1, Writer}
+import scalaz.stream.{Process, Process1, process1, Writer}
 
 trait ProcessSyntax {
 

@@ -3,19 +3,18 @@ package syntax
 
 import java.util.regex.Pattern
 
-import scala.concurrent.{ExecutionContext, Future}
+import com.gu.mediaservice.lib.Logging
 
-import org.elasticsearch.action.{ActionResponse, ActionRequest, ActionRequestBuilder, ListenableActionFuture}
+import scala.concurrent.{ExecutionContext, Future}
+import org.elasticsearch.action.{ActionRequest, ActionRequestBuilder, ActionResponse, ListenableActionFuture}
 import org.elasticsearch.action.get.GetResponse
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder
-
 import play.api.libs.json.{JsValue, Json}
 import com.gu.mediaservice.lib.elasticsearch.FutureConversions
-import play.api.Logger
 import org.elasticsearch.search.SearchHit
 
 
-trait ElasticSearchSyntax {
+trait ElasticSearchSyntax extends Logging {
 
   final implicit class ListenableActionFutureSyntax[A](self: ListenableActionFuture[A]) {
     def asScala: Future[A] = FutureConversions(self)
