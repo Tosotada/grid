@@ -17,12 +17,16 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 trait ElasticSearchHelper extends MockitoSugar {
-  private val mediaApiConfig = new MediaApiConfig()
+  private val mediaApiConfig = new MediaApiConfig() {
+    override lazy val persistenceIdentifier = "test"
+  }
+
   private val mediaApiMetrics = new MediaApiMetrics(mediaApiConfig)
   private val searchFilters = new SearchFilters(mediaApiConfig)
   val ES = new ElasticSearch(mediaApiConfig, searchFilters, mediaApiMetrics) {
     override lazy val port = 9301
     override lazy val cluster = "media-service-test"
+    override lazy val imagesAlias = "media-service-test"
   }
 
   val testUser = "yellow-giraffe@theguardian.com"

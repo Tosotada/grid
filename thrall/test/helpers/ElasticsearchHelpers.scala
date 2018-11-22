@@ -16,6 +16,7 @@ trait ElasticsearchHelpers {
   val ES: ElasticSearch = new ElasticSearch(thrallConfig, thrallMetrics) {
     override lazy val port = 9301
     override lazy val cluster = "media-service-test"
+    override lazy val imagesAlias = "media-service-test"
   }
 
   def createImage(
